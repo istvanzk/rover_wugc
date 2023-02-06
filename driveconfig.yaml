@@ -1,0 +1,28 @@
+# DriveRover configuration YAML
+---
+# mainCfg
+  mode: 'simple'
+  max_speed: 100
+---
+# auxCfg
+  led: true
+  mast: false
+  sonar: false  
+  cam: false
+---
+# ledCfg 
+  led_bright: 20
+---
+# mastCfg 
+  mast_type: 'pan'
+  servo_pan: 0
+  servo_tilt: 1
+--- 
+# camCfg
+  cam_type: 'day'
+  image_dir: './webcam'
+  image_id: 'CAM1'
+  image_rot: 180
+  use_irl: 1
+  bcm_pirport: 16
+  interval_sec: [10]
