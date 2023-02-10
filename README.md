@@ -36,6 +36,7 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 * **TODOs**:
   * Power management for low battery detection - needs external battery voltage monitoring circuit
   * Push button activated power-on/off with clean shutdown - currently a clean shutdown or reboot can be initiated from the WUGC only (see above)
+  * Implement [Ackermann steering](https://en.wikipedia.org/wiki/Ackermann_steering_geometry) as 'advanced' driving mode
 
 
 
