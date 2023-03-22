@@ -3,7 +3,7 @@
 ![Exp](https://img.shields.io/badge/Fork-experimental-orange.svg)
 [![Lic](https://img.shields.io/badge/License-Apache2.0-green)](http://www.apache.org/licenses/LICENSE-2.0)
 ![Py](https://img.shields.io/badge/python-3.9+-green)
-![Ver](https://img.shields.io/badge/version-1.0-blue)
+![Ver](https://img.shields.io/badge/version-1.1-blue)
 
 ## Sources, references, dependencies
 
@@ -32,11 +32,13 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 * Use [systemd service unit](https://www.freedesktop.org/software/systemd/man/systemd.service.html#) to start, monitor (watchdog) and re-start the `driverRover_wugc.py` on missed watchdog; has to be installed as system-wide unit (root access) when LEDs are used!
 * Use YAML configuration file `./driveconfig.yaml` for most common custom parameters; other parameters are configured in `driveconfig.py`
 
+### V1.1, March 2023
+* Implement [Ackermann steering](https://en.wikipedia.org/wiki/Ackermann_steering_geometry) as 'advanced' driving mode
 
 * **TODOs**:
   * Power management for low battery detection - needs external battery voltage monitoring circuit
   * Push button activated power-on/off with clean shutdown - currently a clean shutdown or reboot can be initiated from the WUGC only (see above)
-  * Implement [Ackermann steering](https://en.wikipedia.org/wiki/Ackermann_steering_geometry) as 'advanced' driving mode
+  
 
 
 
