@@ -22,7 +22,8 @@
 # systemctl --user stop driverover
 # systemctl --user start driverover
 # systemctl --user status driverover
-# journalctl --user -xe
+# journalctl --user -xe -u driverover
+# journalctl -xe -n 20 -u driverover
 
 
 ## References:

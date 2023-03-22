@@ -67,10 +67,19 @@ class driveConfig:
 
     ## Custom configuration END
 
-    ## System
+
+
+
+    ## OS
     HOST_NAME: str = field(default="none")
     WATCHDOG_USEC: float = field(default = 15.0)
     FF_DEVICE: str = field(default="")
+
+    ## Rover physical parameters
+    # The ratio between the left-right wheel distance (chasis width) and the front-back wheel distance (chassis length)
+    DoL: float = field(default=80.0/77.0)
+    # The wheel radius (mm)
+    WhR: float = field(default=45.0/2.0)
 
     ## Rover servo motor IDs
     # See https://4tronix.co.uk/blog/?p=2409

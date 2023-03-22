@@ -44,7 +44,7 @@ except ImportError:
 # Local
 from drivelogger import driveLogger
 from driveconfig import driveExit, driveCfg
-from drivefunc import initRover, moveRover, stopRover, brakeRover, cleanupRover, mixerDir, mixerSpeed, rumbleStart, rumbleEnd, flashAllLED, seqAllLED
+from drivefunc import initRover, moveRover, moveRoverAckerman, stopRover, brakeRover, cleanupRover, mixerDir, mixerSpeed, rumbleStart, rumbleEnd, flashAllLED, seqAllLED
 
 class RoverStopException(Exception):
     """
@@ -107,11 +107,11 @@ try:
 
                     # Driving modes
                     if driveCfg.mainCfg.mode == 'simple':
-                        # Get speed from mixer function (for one speed value for all motors)
+                        # Get speed from mixer function (= speed value for all 6 motors)
                         speed_current, _ = mixerSpeed(yaw=0, throttle=ly_axis)
 
-                        # Get direction from mixer function
-                        dir_current = mixerDir(lr=rx_axis, fb=ry_axis)
+                        # Get direction from mixer function (= angle value for all 4 motors)
+                        dir_current = mixerDir(lr=rx_axis, fb=ry_axis, max_dir=30)
 
                         # Set rover direction and speed
                         if speed != speed_current or dir != dir_current:
@@ -119,6 +119,18 @@ try:
                             dir = dir_current
                             speed = speed_current
 
+                    elif driveCfg.mainCfg.mode == 'ackerman':
+                        # Get speed from mixer function (= speed of the rover)
+                        speed_current, _ = mixerSpeed(yaw=0, throttle=ly_axis)
+
+                        # Get direction from mixer function (= steering angle of the rover)
+                        dir_current = mixerDir(lr=rx_axis, fb=ry_axis)
+
+                        # Set rover direction and speed
+                        if speed != speed_current or dir != dir_current:
+                            moveRoverAckerman(dir=dir_current, speed=speed_current)
+                            dir = dir_current
+                            speed = speed_current
 
                     # Get a ButtonPresses object containing everything that was pressed since the last
                     # time around this loop.
