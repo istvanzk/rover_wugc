@@ -17,6 +17,9 @@
 
 """Implements the driveRover_wugc configuration """
 
+# pylint: disable=invalid-name
+# pylint: disable=line-too-long
+
 import os
 import sys
 import socket
@@ -28,7 +31,7 @@ try:
     import yaml
 except ImportError as e:
     driveLogger.error("YAML module could not be loaded!")
-    os._exit()
+    sys.exit()
 
 try:
     from systemd import daemon
@@ -37,19 +40,20 @@ try:
 except ImportError as e:
     driveLogger.warning("The Python systemd module was not found. Continuing without SystemD features.")
     SYSTEMD_MOD = False
-    pass
+    #pass
 
-### Custom object for converting dict to object
 class Struct(object):
+    """Custom object for converting dict to object"""
+
     def __init__(self, **dict_):
         self.__dict__.update(dict_)
     def __repr__(self):
-        return "<%s>" % str(", ".join('%s: %s' % (k, repr(v)) for (k, v) in self.__dict__.items()))
+        _s=", ".join('%s: %s' % (k, repr(v)) for (k, v) in self.__dict__.items())
+        return f"<{_s:s}>"
 
-### The class setting and storing all the config parameters
 @dataclass
-class driveConfig:
-    
+class DriveConfig:
+    """The class setting and storing all the config parameters"""
     ## Custom configuration START
 
     # Configuration file
@@ -76,7 +80,8 @@ class driveConfig:
     FF_DEVICE: str = field(default="")
 
     ## Rover physical parameters
-    # The ratio between the left-right wheel distance (chasis width) and the front-back wheel distance (chassis length)
+    # The ratio between the left-right wheel distance (chasis width) and
+    # the front-back wheel distance (chassis length)
     DoL: float = field(default=80.0/77.0)
     # The wheel radius (mm)
     WhR: float = field(default=45.0/2.0)
@@ -88,7 +93,7 @@ class driveConfig:
     SERVO_FR: int = field(default = 15)
     SERVO_RR: int = field(default = 13)
     SERVO_MP: int = field(default = 0)
-    SERVO_MT: int = field(default = 1) 
+    SERVO_MT: int = field(default = 1)
 
     ## Rover LEDs
     LED_BRIGHT: int = field(default = 0)
@@ -105,7 +110,8 @@ class driveConfig:
     LED_BLUE_H: int = field(default = 0)
     LED_WHITE_H: int = field(default = 0)
 
-    ## The number of seconds the Analog/Home button has to be pressed to activate the driveRover_wugc stop
+    ## The number of seconds the Analog/Home button
+    # has to be pressed to activate the driveRover_wugc stop
     HOME_HELD: int = field(default = 3)
 
     ## Shutdown and reboot button combination held times
@@ -132,7 +138,7 @@ class driveConfig:
         PY39 = (sys.version_info[0] == 3) and (sys.version_info[1] >= 9)
         if not PY39:
             driveLogger.error("This program requires minimum Python 3.9!")
-            os._exit()
+            sys.exit()
 
         # Hostname
         self.HOST_NAME = subprocess.check_output(["hostname", ""], shell=True).strip().decode('utf-8')
@@ -145,10 +151,10 @@ class driveConfig:
                 socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
                 driveLogger.info("Internet connection available.")
 
-            except Exception as e:
+            except TimeoutError:
                 driveLogger.info("Internet connection NOT available. Continuing in off-line mode.")
                 self.INTERNETUSE = False
-                pass
+                #pass
         else:
             self.INTERNETUSE = False
             driveLogger.info("Internet connection not used.")
@@ -161,11 +167,11 @@ class driveConfig:
                 try:
                     self.WATCHDOG_USEC = int(os.environ['WATCHDOG_USEC'])
 
-                except KeyError as e:
+                except KeyError:
                     driveLogger.warning("Environment variable WATCHDOG_USEC is not set (yet?).")
-                    pass
+                    #pass
 
-                driveLogger.info("SystemD features used: READY=1, STATUS=, WATCHDOG=1 (WATCHDOG_USEC=%d), STOPPING=1." % self.WATCHDOG_USEC)
+                driveLogger.info("SystemD features used: READY=1, STATUS=, WATCHDOG=1 (WATCHDOG_USEC=%d), STOPPING=1.", self.WATCHDOG_USEC)
 
             else:
                 driveLogger.warning("The system is not running under SystemD. Continuing without SystemD features.")
@@ -177,28 +183,30 @@ class driveConfig:
         # Read the configuration parameters
         if self.YAMLCFG_FILE is not None:
             try:
-                with open(self.YAMLCFG_FILE, 'r') as stream:
-                    _mainCfg, _auxCfg, _ledCfg, _mastCfg, _camCfg = yaml.load_all(stream, Loader=yaml.SafeLoader)
+                with open(self.YAMLCFG_FILE, 'r', encoding='utf-8') as stream:
+                    _maincfg, _auxcfg, _ledcfg, _mastcfg, _camcfg = yaml.load_all(stream, Loader=yaml.SafeLoader)
 
                 driveLogger.info("YAML configuration file read.")
 
-            except yaml.YAMLError as e:
-                driveLogger.error("Error in YAML configuration file: %s", e)
-                os._exit()
+            except yaml.YAMLError as _e:
+                driveLogger.error("Error in YAML configuration file: %s", _e)
+                sys.exit()
 
             ## Convert config info to objects
-            self.mainCfg = Struct(**_mainCfg)
+            self.mainCfg = Struct(**_maincfg)
             driveLogger.debug("driveCfg: %s", self.mainCfg)
 
-            self.auxCfg = Struct(**_auxCfg)
+            self.auxCfg = Struct(**_auxcfg)
             driveLogger.debug("auxCfg: %s", self.auxCfg)
 
             # Settings based on the read config params
+            #pylint: disable=no-member
             if self.auxCfg.led:
-                self.ledCfg = Struct(**_ledCfg)
+                self.ledCfg = Struct(**_ledcfg)
                 driveLogger.debug("ledCfg: %s", self.ledCfg)
 
                 # Rover LEDs colors
+                #pylint: disable=import-outside-toplevel
                 from rover import numPixels, fromRGB
                 self.LED_BRIGHT = self.ledCfg.led_bright
                 self.LED_NUM    = numPixels
@@ -213,9 +221,10 @@ class driveConfig:
                 self.LED_GREEN_H  = fromRGB(0,100,0)
                 self.LED_BLUE_H   = fromRGB(0,0,100)
                 self.LED_WHITE_H  = fromRGB(100,100,100)
+                #pylint: enable=import-outside-toplevel
 
             if self.auxCfg.mast:
-                self.mastCfg = Struct(**_mastCfg)
+                self.mastCfg = Struct(**_mastcfg)
                 driveLogger.debug("mastCfg: %s", self.mastCfg)
 
                 self.SERVO_MP = self.mastCfg.servo_pan
@@ -223,8 +232,10 @@ class driveConfig:
                     self.SERVO_MT = self.mastCfg.servo_tilt
 
             if self.auxCfg.cam:
-                self.camCfg = Struct(**_camCfg)
+                self.camCfg = Struct(**_camcfg)
                 driveLogger.debug("camCfg: %s", self.camCfg)
+
+            #pylint: enable=no-member
 
         # Force-feedback config (if any)
         if not self.FFDEVICEUSE:
@@ -244,12 +255,11 @@ class driveConfig:
             daemon.notify(msg_str)
 
 
-driveCfg = driveConfig()
+driveCfg = DriveConfig()
 driveLogger.info(driveCfg)
 
-### Gracefull exit handler
 class GracefulKiller:
-    """ Gracefull exit function """
+    """Gracefull exit class"""
     kill_now = False
     def __init__(self):
         signal.signal(signal.SIGINT, self.exit_gracefully)
@@ -259,7 +269,7 @@ class GracefulKiller:
         driveLogger.info("Set gracefull exit handling for SIGINT, SIGTERM and SIGABRT.")
 
     def exit_gracefully(self, signum, frame):
+        """Set the exit flag"""
         self.kill_now = True
 
 driveExit = GracefulKiller()
-

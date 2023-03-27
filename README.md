@@ -30,12 +30,16 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 * Simple driving mode: all (6) DC motors are driven with the same speed. Direction is set only by the servo motors.
 * Logging to (rotating) log file `./driverover.log` and console.
 * Use [systemd service unit](https://www.freedesktop.org/software/systemd/man/systemd.service.html#) to start, monitor (watchdog) and re-start the `driverRover_wugc.py` on missed watchdog; has to be installed as system-wide unit (root access) when LEDs are used!
-* Use YAML configuration file `./driveconfig.yaml` for most common custom parameters; other parameters are configured in `driveconfig.py`
+* Use YAML configuration file `./driveconfig.yaml` for most common custom parameters; other parameters are configured in `driveconfig.py`.
 
 ### V1.1, March 2023
-* Implement [Ackermann steering](https://en.wikipedia.org/wiki/Ackermann_steering_geometry) as 'advanced' driving mode
+* Implement [Ackermann steering](https://en.wikipedia.org/wiki/Ackermann_steering_geometry) driving mode (with hwd limitations). Can be set in `driverconfg.yaml` with `mode: 'ackerman'`.
+### V1.2, March 2023
+* Scale direction angle in the function `mixer_dir()` in `drivefunc.py`.
+* Code clean-up. Fix most of the pylint errors and warnings (except in the orginal code `rover.py`, etc.)
 
-* **TODOs**:
+
+## TODOs:
   * Power management for low battery detection - needs external battery voltage monitoring circuit
   * Push button activated power-on/off with clean shutdown - currently a clean shutdown or reboot can be initiated from the WUGC only (see above)
   
