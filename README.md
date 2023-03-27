@@ -3,7 +3,7 @@
 ![Exp](https://img.shields.io/badge/Fork-experimental-orange.svg)
 [![Lic](https://img.shields.io/badge/License-Apache2.0-green)](http://www.apache.org/licenses/LICENSE-2.0)
 ![Py](https://img.shields.io/badge/python-3.9+-green)
-![Ver](https://img.shields.io/badge/version-1.1-blue)
+![Ver](https://img.shields.io/badge/version-1.2-blue)
 
 ## Sources, references, dependencies
 
