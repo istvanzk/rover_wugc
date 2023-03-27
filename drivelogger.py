@@ -28,18 +28,18 @@ LOGFILEBYTES = 3*102400
 LOG_FILENAME = 'driverover.log'
 
 ### Define the logging filter
-# Filter out all messages which do include the indicated string
 class NoStringFilter(logging.Filter):
+    """Filter out all messages which do include the indicated string"""
 
     def __init__(self, filter_str=None):
         logging.Filter.__init__(self, filter_str)
         self.filterstr = filter_str
 
-    def filter(self, rec):
+    def filter(self, record):
         if self.filterstr is None:
             allow = True
         else:
-            allow = self.filterstr not in rec.getMessage()
+            allow = self.filterstr not in record.getMessage()
 
         return allow
 
