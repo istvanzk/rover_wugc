@@ -33,7 +33,7 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 * Use YAML configuration file `./driveconfig.yaml` for most common custom parameters; other parameters are configured in `driveconfig.py`.
 
 ### V1.1, March 2023
-* Implement [Ackermann steering](https://en.wikipedia.org/wiki/Ackermann_steering_geometry) driving mode (with hwd limitations). Can be set in `driverconfg.yaml` with `mode: 'ackerman'`.
+* Implement [Ackermann steering](https://en.wikipedia.org/wiki/Ackermann_steering_geometry) driving mode (with hwd limitations). Can be set in `driverconfg.yaml` with `mode: 'ackermann'`.
 ### V1.2, March 2023
 * Scale direction angle in the function `mixer_dir()` in `drivefunc.py`.
 * Code clean-up. Fix most of the pylint errors and warnings (except in the orginal code `rover.py`, etc.)

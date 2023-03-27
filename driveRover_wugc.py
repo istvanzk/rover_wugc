@@ -114,7 +114,7 @@ try:
                     # Driving modes
                     #pylint: disable=no-member
                     if driveCfg.mainCfg.mode == 'simple':
-                        # Get rover speed from mixer function (= ROVER_SPEED value for all 6 motors)
+                        # Get rover speed from mixer function (= rover speed value for all 6 motors)
                         ROVER_SPEED_CURRENT, _ = mixer_speed(
                             yaw=0,
                             throttle=ly_axis)
@@ -133,8 +133,8 @@ try:
                             ROVER_DIR = ROVER_DIR_CURRENT
                             ROVER_SPEED = ROVER_SPEED_CURRENT
 
-                    elif driveCfg.mainCfg.mode == 'ackerman':
-                        # Get rover speed from mixer function (= ROVER_SPEED of the rover)
+                    elif driveCfg.mainCfg.mode == 'ackermann':
+                        # Get rover speed from mixer function (= speed of the rover)
                         ROVER_SPEED_CURRENT, _ = mixer_speed(
                             yaw=0,
                             throttle=ly_axis)
@@ -144,7 +144,7 @@ try:
                             l_r=rx_axis,
                             f_b=ry_axis)
 
-                        # Set rover rover direction and ROVER_SPEED
+                        # Set rover rover direction and rover speed
                         if ROVER_SPEED != ROVER_SPEED_CURRENT or ROVER_DIR != ROVER_DIR_CURRENT:
                             move_rover_ackerman(
                                 dir_deg=ROVER_DIR_CURRENT,
