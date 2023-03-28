@@ -85,7 +85,7 @@ try:
         try:
             # Bind to any available controller.
             # This will use whatever's connected as long as the library supports it.
-            with ControllerResource(dead_zone=0.1, hot_zone=0.05) as pihutwugc:
+            with ControllerResource(dead_zone=0.05, hot_zone=0.05) as pihutwugc:
                 INFO_STR = 'Controller found.'
                 driveLogger.info(INFO_STR)
                 driveCfg.journal_send(INFO_STR)
