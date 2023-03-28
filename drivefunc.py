@@ -362,14 +362,14 @@ try:
             rover.forward(abs(int(speed_per)))
 
             # Set forward-back left-right LED
-            set_rlfb_led(True, dir)
+            set_rlfb_led(True, dir_deg)
 
         elif speed_per < 0:
             # Move backward
             rover.reverse(abs(int(speed_per)))
 
             # Set forward-back left-right LED
-            set_rlfb_led(False, dir)
+            set_rlfb_led(False, dir_deg)
 
         driveLogger.debug("Speed=%f", speed_per)
 
@@ -427,7 +427,7 @@ try:
             rover.turnForward(speed_left, speed_right)
 
             # Set front-back left-right LEDs
-            set_rlfb_led(True, dir)
+            set_rlfb_led(True, dir_deg)
 
         elif speed_per < 0:
             # Move backward
@@ -522,7 +522,7 @@ except ImportError:
         """
         # Calculate the Ackerman steering parameters
         if dir_deg is not None:
-            prev_dir = dir
+            prev_dir = dir_deg
         else:
             # Use the last direction value
             dir_deg = prev_dir
