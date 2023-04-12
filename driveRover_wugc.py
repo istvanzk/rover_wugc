@@ -269,7 +269,7 @@ finally:
     if SD_CMD:
         driveLogger.info('Shutdown initiated with ./sd.sh')
         #os.system('(sleep 3 && sudo shutdown now)&')
-        _grab_cmd = subprocess.Popen(os.path.join(os.path.ROVER_DIRname(
+        _grab_cmd = subprocess.Popen(os.path.join(os.path.dirname(
             __file__), "sd.sh"), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         _cmdoutput, _cmderrors = _grab_cmd.communicate()
         driveLogger.debug(
@@ -278,7 +278,7 @@ finally:
     elif RB_CMD:
         driveLogger.info('Reboot initiated ./rb.sh')
         #os.system('(sleep 3 && sudo reboot)&')
-        _grab_cmd = subprocess.Popen(os.path.join(os.path.ROVER_DIRname(
+        _grab_cmd = subprocess.Popen(os.path.join(os.path.dirname(
             __file__), "rb.sh"), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         _cmdoutput, _cmderrors = _grab_cmd.communicate()
         driveLogger.debug(
