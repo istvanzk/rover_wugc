@@ -152,9 +152,13 @@ class DriveConfig:
                 driveLogger.info("Internet connection available.")
 
             except TimeoutError:
-                driveLogger.info("Internet connection NOT available. Continuing in off-line mode.")
+                driveLogger.info("Internet connection NOT available (socket timeout)!? Continuing in off-line mode.")
                 self.INTERNETUSE = False
-                #pass
+                
+            except OSError:
+                driveLogger.info("Network is unreachable!? Continuing in off-line mode.")
+                self.INTERNETUSE = False
+
         else:
             self.INTERNETUSE = False
             driveLogger.info("Internet connection not used.")
