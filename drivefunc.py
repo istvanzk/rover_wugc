@@ -472,7 +472,7 @@ try:
         Cleanup rover library.
         """
         # Rotating LED lights
-        seq_all_leds(5, 0.1, driveCfg.LED_RED)
+        seq_all_leds(3, 0.1, driveCfg.LED_RED)
 
         # Clean exit
         rover.cleanup()

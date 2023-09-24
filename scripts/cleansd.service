@@ -1,0 +1,38 @@
+## systemd unit file for clean shutdown/poweroff service triggered user/button 
+## V1.0, September 2023
+
+## For system-wide service:
+# Find the service units directly with: pkg-config systemd --variable=systemdsystemunitdir, e.g. /lib/systemd/system
+# sudo cp cleansd.service /lib/systemd/system/cleansd.service 
+# chmod 644 .../systemd/cleansd.service
+
+## Useful commands (run with sudo):
+# systemd-analyze verify cleansd.service
+# systemctl enable cleansd
+# systemctl daemon-reload
+# systemctl stop cleansd
+# systemctl start cleansd
+# systemctl status cleansd
+# journalctl -xe -u cleansd
+# journalctl -xe -n 20 -u cleansd
+
+
+## References:
+# https://wiki.archlinux.org/index.php/Systemd/User#How_it_works 
+# https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+# https://www.freedesktop.org/software/systemd/man/systemd.service.html
+# https://wiki.archlinux.org/index.php/systemd
+
+[Unit]
+Description=4tronix M.A.R.S. Rover Robot poweroff service
+Documentation="https://github.com/istvanzk/rover_wugc" "file:/home/pi/rover_wugc/scripts/cleansd.sh"
+After=multi-user.target
+
+[Service]
+#Type=exec
+ExecStart=/home/pi/rover_wugc/cleansd.sh
+ExitType=main
+Restart=always
+
+[Install]
+WantedBy=default.target
