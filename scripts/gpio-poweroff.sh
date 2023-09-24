@@ -17,7 +17,7 @@
 # around (or writable).
 
 SHUTDOWN_PIN=22
-SHUTDOWN_SLEEP=10
+SHUTDOWN_SLEEP=12
 
 case "$1" in
   poweroff | halt)
