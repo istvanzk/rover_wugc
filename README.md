@@ -16,7 +16,6 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 
 ## Version history
 ### V1.0, February 2023
-
 * Joysticks:
   * Use left stick to set speed (forward or reverse) and right stick to set direction (left or right). 
 * Buttons:
@@ -24,9 +23,9 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
   * Circle+Square for 3 sec to initiate system shutdown with `./scripts/sd.sh`.
   * Triangle+Cross for 3 sec to initiate system reboot with `./scripts/rb.sh`.
 * LEDs (**must be run with root access**):
-  * Initialisationn light sequence.
+  * Initialisation LED sequence.
   * White color in the front; red color in back; etc.
-  * Program termination light sequence.
+  * Program termination LED sequence.
 * Simple driving mode: all (6) DC motors are driven with the same speed. Direction is set only by the servo motors.
 * Logging to (rotating) log file `driverover.log` and console.
 * Use [systemd service unit](https://www.freedesktop.org/software/systemd/man/systemd.service.html#) to start, monitor (watchdog) and re-start the `driverRover_wugc.py` on missed watchdog; has to be installed as system-wide unit (root access) when LEDs are used!
@@ -39,7 +38,7 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 * Code clean-up. Fix most of the pylint errors and warnings (except in the orginal code `rover.py`, etc.)
 ### V1.3, September 2023
 * Support power management hardware for clean shutdown/poweroff when: push button activated power-on/off and low battery triggered
-* Systemd services to handle power management hardware and ckean shutdown/poweroff. See [`scripts`](scripts)) for details.
+* Systemd services to handle power management hardware and clean shutdown/poweroff. See [`scripts`](scripts)) for details.
 
 
 ## TODOs:
