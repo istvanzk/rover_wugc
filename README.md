@@ -37,8 +37,8 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 * Scale direction angle in the function `mixer_dir()` in `drivefunc.py`.
 * Code clean-up. Fix most of the pylint errors and warnings (except in the orginal code `rover.py`, etc.)
 ### V1.3, September 2023
-* Support power management hardware for clean shutdown/poweroff when: push button activated power-on/off and low battery triggered
-* Systemd services to handle power management hardware and clean shutdown/poweroff. See [`scripts`](scripts)) for details.
+* Support power management hardware for clean shutdown/poweroff: push button activated or low battery triggered
+* Systemd services to handle power management hardware and clean shutdown/poweroff. See [`scripts`](scripts) for details.
 
 
 ## TODOs:
