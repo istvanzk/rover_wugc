@@ -82,9 +82,9 @@ stopRunning() {
 }
 
 fifoBuff(){
-    if [ ${#batt[@]} -eq "$BATT_BUFF_LNG" ]; then
+    if [ "${#batt[@]}" -eq "$BATT_BUFFER_LNG" ]; then
         batt=("${batt[@]:1}")
-        batt[$BATT_BUFF_LNG-1]=$1
+        batt[$BATT_BUFFER_LNG-1]=$1
     else
         batt[${#batt[@]}]=$1
     fi
