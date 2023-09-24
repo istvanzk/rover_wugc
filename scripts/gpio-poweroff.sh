@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Based on https://github.com/pimoroni/clean-shutdown/
-# sudo cp /home/pi/rover_wugc/scripts/gpio-poweroff.sh /usr/lib/systemd/system-shutdown/gpio-poweroff.sh
+# sudo cp gpio-poweroff.sh /usr/lib/systemd/system-shutdown/gpio-poweroff.sh
 # $1 will be either "halt", "poweroff", "reboot" or "kexec"
 
 # https://www.freedesktop.org/software/systemd/man/systemd-halt.service.html

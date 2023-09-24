@@ -30,7 +30,8 @@ After=multi-user.target
 
 [Service]
 #Type=exec
-ExecStart=/home/pi/rover_wugc/battsd.sh
+ExecStart=/home/pi/rover_wugc/scripts/battsd.sh
+WorkingDirectory=/home/pi/rover_wugc/scripts
 ExitType=main
 Restart=always
 
