@@ -270,19 +270,19 @@ except RoverStopException:
 # Handle shutdown or reboot
 finally:
     if SD_CMD:
-        driveLogger.info('Shutdown initiated with ./sd.sh')
+        driveLogger.info('Shutdown initiated with ./scripts/sd.sh')
         #os.system('(sleep 3 && sudo shutdown now)&')
         _grab_cmd = subprocess.Popen(os.path.join(os.path.dirname(
-            __file__), "sd.sh"), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+            __file__), "./scripts/sd.sh"), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         _cmdoutput, _cmderrors = _grab_cmd.communicate()
         driveLogger.debug(
             "Shutdown cmd: output: %s, error: %s", _cmdoutput, _cmderrors.decode())
 
     elif RB_CMD:
-        driveLogger.info('Reboot initiated ./rb.sh')
+        driveLogger.info('Reboot initiated ./scripts/rb.sh')
         #os.system('(sleep 3 && sudo reboot)&')
         _grab_cmd = subprocess.Popen(os.path.join(os.path.dirname(
-            __file__), "rb.sh"), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+            __file__), "./scripts/rb.sh"), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         _cmdoutput, _cmderrors = _grab_cmd.communicate()
         driveLogger.debug(
             "Reboot cmd: output: %s, error: %s", _cmdoutput, _cmderrors.decode())
