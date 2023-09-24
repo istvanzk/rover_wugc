@@ -43,7 +43,6 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 
 ## TODOs:
 * Upload circuit diagram for power management hardware (add-on to the M.A.R.S. Rover Robot main board)
-* Add installation script for the service units
 * Add support for customized 2-axis camera mount
 * Add support for sensors (motion, proximity, light)
 * Design custom 3-D printed enclosure
