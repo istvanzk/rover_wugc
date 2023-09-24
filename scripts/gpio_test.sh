@@ -82,7 +82,7 @@ stopRunning() {
 }
 
 fifoBuff(){
-    if [ "${#batt[@]}" -eq "$BATT_BUFF_LNG" ]; then
+    if [ "${#batt[@]}" -eq $BATT_BUFF_LNG ]; then
         batt=("${batt[@]:1}")
         batt[$BATT_BUFF_LNG-1]=$1
     else
@@ -162,6 +162,7 @@ while true; do
   fi
   echo "Batt: ${batt[*]}"
   echo "L:${#batt[@]}, T:$crt_count"
+  echo "---"
  
   sleep $POLLING_RATE
 
