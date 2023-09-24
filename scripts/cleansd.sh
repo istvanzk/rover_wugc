@@ -33,11 +33,11 @@ fi
 
 shutdown_trigger() {
     trigValue=$(getPinValue $TRIGGER_PIN)
-    if [ $trigValue -eq "$STATE_ON" ]]; then
+    if [ "$trigValue" -eq "$STATE_ON" ]; then
         echo "BCM $TRIGGER_PIN asserted $STATE_ON" | write_log
         start=$SECONDS
 
-        while [ $trigValue -eq "$STATE_ON" ]; do
+        while [ "$trigValue" -eq "$STATE_ON" ]; do
             sleep 0.1
             low_time=$[ $SECONDS - $start ]
             if [ "$low_time" -ge "$TRIGG_HOLD_TIME" ]; then
