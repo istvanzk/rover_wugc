@@ -101,6 +101,7 @@ while true; do
         if batt_trigger; then
             msg="Battery low initiated system power down"
             echo $msg | write_log
+            echo "Battery state history: ${batt[*]}" | write_log
             wall $msg
             daemon="off"
             doShutdown
