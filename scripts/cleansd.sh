@@ -75,7 +75,7 @@ checkForRoot
 if grep -q "^[[:space:]]*disable_cleanshutd=1" /boot/config.txt; then
     echo "cleansd is disabled in /boot/config.txt" | write_log
     exit 1
-elif [ "$DAEMON_ACTIVE" == 0 ]; then
+elif [ "$DAEMON_ACTIVE" -eq "0" ]; then
     echo "cleansd is disabled in script" | write_log
     exit 1
 fi
@@ -83,7 +83,7 @@ fi
 # BCM pin setup
 exportPin $TRIGGER_PIN
 setDirectionInput $TRIGGER_PIN
-echo "Monitoring BCM $TRIGGER_PIN" | write_log
+echo "Monitoring user button on BCM pin $TRIGGER_PIN" | write_log
 
 # Ctrl-C handlers
 trap stopRunning SIGINT

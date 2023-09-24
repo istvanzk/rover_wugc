@@ -75,7 +75,7 @@ checkForRoot
 if grep -q "^[[:space:]]*disable_battshutd=1" /boot/config.txt; then
     echo "battsd is disabled in /boot/config.txt" | write_log
     exit 1
-elif [ "$DAEMON_ACTIVE" == 0 ]; then
+elif [ "$DAEMON_ACTIVE" -eq "0" ]; then
     echo "battsd is disabled in script" | write_log
     exit 1
 fi
@@ -83,7 +83,7 @@ fi
 # BCM pin setup
 exportPin $BATTERY_PIN
 setDirectionInput $BATTERY_PIN
-echo "Monitoring BCM $BATTERY_PIN" | write_log
+echo "Monitoring battery status on BCM pin $BATTERY_PIN" | write_log
 
 # Ctrl-C handlers
 trap stopRunning SIGINT
