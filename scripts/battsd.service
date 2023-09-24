@@ -29,7 +29,7 @@ Documentation="https://github.com/istvanzk/rover_wugc" "file:/home/pi/rover_wugc
 After=multi-user.target
 
 [Service]
-#Type=exec
+Type=exec
 ExecStart=/home/pi/rover_wugc/scripts/battsd.sh
 WorkingDirectory=/home/pi/rover_wugc/scripts
 ExitType=main
