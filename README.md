@@ -3,7 +3,7 @@
 ![Exp](https://img.shields.io/badge/Fork-experimental-orange.svg)
 [![Lic](https://img.shields.io/badge/License-Apache2.0-green)](http://www.apache.org/licenses/LICENSE-2.0)
 ![Py](https://img.shields.io/badge/python-3.9+-green)
-![Ver](https://img.shields.io/badge/version-1.2-blue)
+![Ver](https://img.shields.io/badge/version-1.3-blue)
 
 ## Sources, references, dependencies
 
@@ -37,11 +37,12 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 ### V1.2, March 2023
 * Scale direction angle in the function `mixer_dir()` in `drivefunc.py`.
 * Code clean-up. Fix most of the pylint errors and warnings (except in the orginal code `rover.py`, etc.)
+### V1.3, September 2023
+* Support power management hardware for clean shutdown/poweroff when: push button activated power-on/off and low battery triggered
+* Systemd services to handle power management hardware and ckean shutdown/poweroff (in `scripts`)
 
 
 ## TODOs:
-  * Power management for low battery detection - needs external battery voltage monitoring circuit
-  * Push button activated power-on/off with clean shutdown - currently a clean shutdown or reboot can be initiated from the WUGC only (see above)
   
 
 
