@@ -3,7 +3,8 @@
 ![Exp](https://img.shields.io/badge/Fork-experimental-orange.svg)
 [![Lic](https://img.shields.io/badge/License-Apache2.0-green)](http://www.apache.org/licenses/LICENSE-2.0)
 
-The `scripts` folder contains the service units files and bash scripts required to support the system-wide systemd services/daemons described below. 
+The `scripts` folder contains the [systemd service unit](https://www.freedesktop.org/software/systemd/man/systemd.service.html#) files and bash scripts required to support the system-wide services/daemons described below. 
+The `gpio_test.sh` is a bash script which can be used to test the GPIO monitoring loops.
 
 ### Installation (as root, with sudo)
 * The service unit files `*.service` must be installed in `/lib/systemd/system/`. 
