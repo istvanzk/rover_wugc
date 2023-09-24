@@ -62,10 +62,10 @@ getPinValue() {
 # If the logger is enabled then log events into syslog at /var/log/syslog
 write_log() 
 {
-  if [[ $DO_LOGGING != 0 ]]; then
+  if [ "$DO_LOGGING" -eq "1" ]; then
     while read text
     do 
-      logger -t rover-cleansd $text
+      logger -t driverover-gpio $text
     done
   fi
 }
