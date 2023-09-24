@@ -48,7 +48,7 @@ batt_trigger(){
             crt_count=$((crt_count+1))
         fi
     done
-    if [ "$crt_count" -ge "$TRIGG_COUNT" ]; then
+    if [ "$crt_count" -ge "$BATT_TRIGG_COUNT" ]; then
         return 0
     fi
     return 1
