@@ -32,7 +32,7 @@ After=multi-user.target
 Type=exec
 ExecStart=/home/pi/rover_wugc/scripts/cleansd.sh
 WorkingDirectory=/home/pi/rover_wugc/scripts
-ExitType=main
+#ExitType=main
 Restart=always
 
 [Install]
