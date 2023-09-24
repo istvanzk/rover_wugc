@@ -106,7 +106,7 @@ batt_trigger(){
 shutdown_trigger() {
     trigValue=$(getPinValue $TRIGGER_PIN)
     if [ "$trigValue" -eq "$STATE_ON" ]; then
-        echo "BCM $TRIGGER_PIN asserted $STATE_ON" | write_log
+        echo "BCM $TRIGGER_PIN asserted $STATE_ON"
         start=$SECONDS
 
         while [ "$trigValue" -eq "$STATE_ON" ]; do
@@ -119,7 +119,7 @@ shutdown_trigger() {
         done
 
         if [ "$low_time" -ge "$TRIGG_HOLD_TIME" ]; then
-            echo "BCM $TRIGGER_PIN held low for $low_time seconds" | write_log
+            echo "BCM $TRIGGER_PIN held low for $low_time seconds"
             return 0
         fi
     fi
