@@ -82,6 +82,7 @@ try:
     while True:
         # Inner try / except is used to wait for a controller to become available, at which point we
         # bind to it and enter a loop where we read axis values and send commands to the motors.
+        watchdog_tprev = datetime.now()
         try:
             # Bind to any available controller.
             # This will use whatever's connected as long as the library supports it.
@@ -99,11 +100,10 @@ try:
                 rumble_start(pihutwugc)
 
                 # Rotating LED lights
-                seq_all_leds(3, 0.2, driveCfg.LED_GREEN)
+                seq_all_leds(2, 0.2, driveCfg.LED_GREEN)
 
                 # Loop until the pihutwugc disconnects,
                 # or we deliberately stop by raising a RoverStopException
-                watchdog_tprev = datetime.now()
                 while pihutwugc.connected:
 
                     # Get pihutwugc values from the left and right circular analogue axes
@@ -238,12 +238,15 @@ try:
             INFO_STR = 'No controller found yet. Keep trying!'
             driveLogger.info(INFO_STR)
             driveCfg.journal_send(INFO_STR)
-            sleep(1)
-            # pass
 
-        # Update the systemd watchdog
-        sleep(1.0*driveCfg.WATCHDOG_USEC/3000000.0)
-        driveCfg.daemon_notify("WATCHDOG=1")
+            # Update the systemd watchdog when needed
+            watchdog_tcrt = datetime.now()
+            if watchdog_tcrt - watchdog_tprev > timedelta(seconds=int(1.0*driveCfg.WATCHDOG_USEC/2000000.0)):
+                driveCfg.daemon_notify("WATCHDOG=1")
+                watchdog_tprev = watchdog_tcrt
+
+            # Sleep
+            sleep(3)
 
 except RoverStopException:
     # This exception will be raised when
@@ -286,5 +289,3 @@ finally:
 
     # Shutdown logging
     logging.shutdown()
-
-    sleep(1)
