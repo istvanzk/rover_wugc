@@ -48,7 +48,7 @@ WatchdogSec=15
 TimeoutStartSec=70
 ExecStart=/usr/bin/python3 /home/pi/rover_wugc/driveRover_wugc.py
 WorkingDirectory=/home/pi/rover_wugc
-ExitType=main
+#ExitType=main
 Restart=on-watchdog
 
 [Install]
