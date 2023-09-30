@@ -37,12 +37,10 @@ Raspberry Pi Zero (inc v2)](https://4tronix.co.uk/blog/?p=2409)
 * Scale direction angle in the function `mixer_dir()` in `drivefunc.py`.
 * Code clean-up. Fix most of the pylint errors and warnings (except in the orginal code `rover.py`, etc.)
 ### V1.3, September 2023
-* Support power management hardware for clean shutdown/poweroff: push button activated or low battery triggered
+* Support power management hardware for clean shutdown/poweroff: push button activated or low battery triggered. Prototype circuit diagram provided.
 * Systemd services to handle power management hardware and clean shutdown/poweroff. See [`scripts`](scripts) for details.
 
-
 ## TODOs:
-* Upload circuit diagram for power management hardware (add-on to the M.A.R.S. Rover Robot main board)
 * Add support for customized 2-axis camera mount
 * Add support for sensors (motion, proximity, light)
 * Design custom 3-D printed enclosure
